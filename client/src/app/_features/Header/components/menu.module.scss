@@ -1,0 +1,13 @@
+.nav {
+  border-bottom: 1px solid;
+}
+.navList {
+  display: flex;
+  padding: 16px 60px;
+}
+.navItem {
+  font-size: 14px;
+  & + & {
+    margin-left: 24px;
+  }
+}
