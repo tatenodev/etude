@@ -7,7 +7,7 @@ export default (router: ConnectRouter) =>
   router.service(ElizaService, {
     // implements rpc Say
     async say(req) {
-      // throw new ConnectError("I have no words anymore.", Code.ResourceExhausted);
+      throw new ConnectError("test", Code.FailedPrecondition);
       const allUsers = await prisma.user.findMany();
       return {
         sentence: `You said: ${req.sentence}, users: ${allUsers.length}`,
@@ -35,7 +35,7 @@ export default (router: ConnectRouter) =>
         // const connectErr = ConnectError.from(err);
         // console.log("err:", connectErr);
         //
-        throw new ConnectError("hoge", Code.ResourceExhausted);
+        throw new ConnectError("hoge", Code.InvalidArgument);
         //
         // if (err instanceof Prisma.PrismaClientKnownRequestError) {
         //   console.log("There is a unique constraint violation, a new user cannot be created with this email");
