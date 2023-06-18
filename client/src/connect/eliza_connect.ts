@@ -21,15 +21,6 @@ export const ElizaService = {
       O: SayResponse,
       kind: MethodKind.Unary,
     },
-    /**
-     * @generated from rpc buf.connect.demo.eliza.v1.ElizaService.Say2
-     */
-    say2: {
-      name: "Say2",
-      I: SayRequest,
-      O: SayResponse,
-      kind: MethodKind.Unary,
-    },
   }
 } as const;
 

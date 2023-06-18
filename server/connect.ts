@@ -10,9 +10,4 @@ export default (router: ConnectRouter) =>
         sentence: `You said: ${req.sentence}`,
       };
     },
-    async say2(req) {
-      return {
-        sentence: `You said2: ${req.sentence}`,
-      };
-    },
   });
