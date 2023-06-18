@@ -1,6 +1,6 @@
 import { getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
-import { Header } from "@/app/_features/Header";
-import { Talk } from ".//features/Talk";
+import { Header } from "@/app/features/Header";
+import { Talk } from "./features/Talk";
 
 export default withPageAuthRequired(
   async function Dashboard() {
@@ -9,7 +9,7 @@ export default withPageAuthRequired(
       <>
         <Header />
         <Talk />
-        <p>{JSON.stringify(session?.user, null, 2)}</p>
+        {/* <p>{JSON.stringify(session?.user, null, 2)}</p> */}
         <a href="/api/auth/logout">Logout</a>
       </>
     );
