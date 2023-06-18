@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "cp": "cp -R gen/ ../client/src/connect/",
     "gen": "buf generate proto && npm run cp",
+    "dev": "tsx watch server.ts",
     "start": "tsx server.ts"
   },
   "keywords": [],

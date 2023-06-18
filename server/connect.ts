@@ -1,7 +1,6 @@
-import { Code, ConnectError, ConnectRouter, connectErrorDetails } from "@bufbuild/connect";
+import { Code, ConnectError, ConnectRouter } from "@bufbuild/connect";
 import { ElizaService } from "./gen/eliza_connect";
 import { prisma } from "./server";
-import { Prisma } from "@prisma/client";
 
 export default (router: ConnectRouter) =>
   // registers buf.connect.demo.eliza.v1.ElizaService
@@ -33,10 +32,17 @@ export default (router: ConnectRouter) =>
           createdUserName: user.name ?? "",
         };
       } catch (err) {
+        // const connectErr = ConnectError.from(err);
+        // console.log("err:", connectErr);
+        //
         throw new ConnectError("hoge", Code.ResourceExhausted);
+        //
         // if (err instanceof Prisma.PrismaClientKnownRequestError) {
         //   console.log("There is a unique constraint violation, a new user cannot be created with this email");
-        //   return { err: "There is a unique constraint violation, a new user cannot be created with this email" };
+        //   return {
+        //     code: 1,
+        //     message: "There is a unique constraint violation, a new user cannot be created with this email",
+        //   };
         // }
       }
     },
