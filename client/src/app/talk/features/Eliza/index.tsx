@@ -12,17 +12,32 @@ export function Eliza() {
   });
   const client = createPromiseClient(ElizaService, transport);
 
+  const createUser = async () => {
+    const res = await client.createUser({
+      name: "test2 name",
+      email: "test2@email.com",
+      postTitle: "test title",
+      bio: "test bio",
+    });
+    console.log("createUser:", res);
+  };
+
   return (
     <div>
-      <input type="text" value={input} onChange={(e) => setInput(e.target.value)} />
-      <button
-        onClick={async () => {
-          const res = await client.say({ sentence: input ?? "hello!!" });
-          console.log("res:", res.sentence);
-        }}
-      >
-        eliza
-      </button>
+      <div>
+        <input type="text" value={input} onChange={(e) => setInput(e.target.value)} />
+        <button
+          onClick={async () => {
+            const res = await client.say({ sentence: input ?? "hello!!" });
+            console.log("res:", res.sentence);
+          }}
+        >
+          eliza & get user length
+        </button>
+      </div>
+      <div>
+        <button onClick={createUser}>createUser</button>
+      </div>
     </div>
   );
 }

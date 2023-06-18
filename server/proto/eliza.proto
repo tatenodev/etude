@@ -1,3 +1,4 @@
+// https://qiita.com/Captain_Blue/items/b7a1f4a42f48559fac0c
 syntax = "proto3";
 
 package buf.connect.demo.eliza.v1;
@@ -12,4 +13,16 @@ message SayResponse {
 
 service ElizaService {
   rpc Say(SayRequest) returns (SayResponse) {}
+  rpc CreateUser(UserRequest) returns (UserResponse) {}
+}
+
+message UserRequest {
+  string name = 1;
+  string email = 2;
+  string postTitle = 3;
+  string bio = 4;
+}
+
+message UserResponse {
+  string created_user_name = 1;
 }

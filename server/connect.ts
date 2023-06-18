@@ -1,15 +1,43 @@
-import { ConnectRouter } from "@bufbuild/connect";
+import { Code, ConnectError, ConnectRouter, connectErrorDetails } from "@bufbuild/connect";
 import { ElizaService } from "./gen/eliza_connect";
 import { prisma } from "./server";
+import { Prisma } from "@prisma/client";
 
 export default (router: ConnectRouter) =>
   // registers buf.connect.demo.eliza.v1.ElizaService
   router.service(ElizaService, {
     // implements rpc Say
     async say(req) {
+      // throw new ConnectError("I have no words anymore.", Code.ResourceExhausted);
       const allUsers = await prisma.user.findMany();
       return {
         sentence: `You said: ${req.sentence}, users: ${allUsers.length}`,
       };
+    },
+    async createUser(req) {
+      try {
+        const user = await prisma.user.create({
+          data: {
+            name: req.name,
+            email: req.email,
+            posts: {
+              create: { title: req.postTitle },
+            },
+            profile: {
+              create: { bio: req.bio },
+            },
+          },
+        });
+
+        return {
+          createdUserName: user.name ?? "",
+        };
+      } catch (err) {
+        throw new ConnectError("hoge", Code.ResourceExhausted);
+        // if (err instanceof Prisma.PrismaClientKnownRequestError) {
+        //   console.log("There is a unique constraint violation, a new user cannot be created with this email");
+        //   return { err: "There is a unique constraint violation, a new user cannot be created with this email" };
+        // }
+      }
     },
   });
