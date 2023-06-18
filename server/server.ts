@@ -2,6 +2,9 @@ import { fastify } from "fastify";
 import { fastifyConnectPlugin } from "@bufbuild/connect-fastify";
 import routes from "./connect";
 import cors from "@fastify/cors";
+import { PrismaClient } from "@prisma/client";
+
+export const prisma = new PrismaClient();
 
 async function main() {
   const server = fastify();
@@ -21,4 +24,12 @@ async function main() {
 }
 // You can remove the main() wrapper if you set type: module in your package.json,
 // and update your tsconfig.json with target: es2017 and module: es2022.
-void main();
+void main()
+  .then(async () => {
+    await prisma.$disconnect();
+  })
+  .catch(async (e) => {
+    console.error(e);
+    await prisma.$disconnect();
+    process.exit(1);
+  });
