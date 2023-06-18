@@ -12,4 +12,5 @@ message SayResponse {
 
 service ElizaService {
   rpc Say(SayRequest) returns (SayResponse) {}
+  rpc Say2(SayRequest) returns (SayResponse) {}
 }

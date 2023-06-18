@@ -4,5 +4,5 @@ plugins:
     opt: target=ts
     out: gen
   - plugin: connect-es
-    opt: target=ts
+    opt: target=ts,import_extension=.ts
     out: gen

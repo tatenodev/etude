@@ -7,12 +7,15 @@
     "dev:next": "next dev",
     "dev:scss": "typed-scss-modules src --watch",
     "typegen:scss": "typed-scss-modules src",
+    "cp": "cp -R src/connect/ ../server/gen/",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^3.0.0-beta.0",
+    "@bufbuild/connect": "^0.10.0",
+    "@bufbuild/connect-web": "^0.10.0",
     "@types/node": "20.3.0",
     "@types/react": "18.2.11",
     "@types/react-dom": "18.2.4",

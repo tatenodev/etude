@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "cp": "cp -R gen/ ../client/src/connect/"
+    "cp": "cp -R gen/ ../client/src/connect/",
+    "gen": "buf generate proto && npm run cp",
+    "start": "tsx server.ts"
   },
   "keywords": [],
   "author": "",
@@ -13,9 +15,12 @@
   "dependencies": {
     "@bufbuild/buf": "^1.21.0-1",
     "@bufbuild/connect": "^0.9.1",
+    "@bufbuild/connect-fastify": "^0.10.0",
     "@bufbuild/protobuf": "^1.2.1",
     "@bufbuild/protoc-gen-connect-es": "^0.9.1",
     "@bufbuild/protoc-gen-es": "^1.2.1",
+    "@fastify/cors": "^8.3.0",
+    "fastify": "^4.18.0",
     "tsx": "^3.12.7"
   },
   "devDependencies": {
