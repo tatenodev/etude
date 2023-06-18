@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { SayRequest, SayResponse, UserRequest, UserResponse } from "./eliza_pb.ts";
+import { SayRequest, SayResponse, UserRequest, UserResponse } from "./eliza_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -30,6 +30,5 @@ export const ElizaService = {
       O: UserResponse,
       kind: MethodKind.Unary,
     },
-  }
+  },
 } as const;
-
