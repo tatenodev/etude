@@ -14,8 +14,8 @@ export function Eliza() {
 
   const createUser = async () => {
     const res = await client.createUser({
-      name: "test2 name",
-      email: "test2@email.com",
+      name: "test name",
+      email: "test@email.com",
       postTitle: "test title",
       bio: "test bio",
     });
