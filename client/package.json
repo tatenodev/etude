@@ -7,7 +7,7 @@
     "dev:next": "next dev",
     "dev:scss": "typed-scss-modules src --watch",
     "typegen:scss": "typed-scss-modules src",
-    "cp": "cp -R src/connect/ ../server/gen/",
+    "cp": "cp -R ../server/gen/ src/connect/",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
