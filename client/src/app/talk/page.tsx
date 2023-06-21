@@ -16,5 +16,5 @@ export default withPageAuthRequired(
       </>
     );
   },
-  { returnTo: "/dashboard" }
+  { returnTo: "/talk" }
 );
