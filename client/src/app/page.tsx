@@ -5,6 +5,7 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 import Link from "next/link";
 
 export default function Home() {
+  console.log("hoge");
   const { user, error, isLoading } = useUser();
 
   if (isLoading) return <div>Loading...</div>;
@@ -13,10 +14,10 @@ export default function Home() {
   if (user) {
     return (
       <div>
-        Welcome {user.name}! <Link href="/dashboard">ダッシュボードへ</Link>
+        Welcome {user.name}! <Link href="/talk">ダッシュボードへ</Link>
       </div>
     );
   }
 
-  return <a href="/api/auth/login?returnTo=/dashboard">Login</a>;
+  return <a href="/api/auth/login?returnTo=/talk">Login</a>;
 }
