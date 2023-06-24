@@ -17,21 +17,28 @@ model Post {
   title     String   @db.VarChar(255)
   content   String?
   published Boolean  @default(false)
-  author    User     @relation(fields: [authorId], references: [id])
+  author    UserOld     @relation(fields: [authorId], references: [id])
   authorId  Int
 }
 
 model Profile {
   id     Int     @id @default(autoincrement())
   bio    String?
-  user   User    @relation(fields: [userId], references: [id])
+  user   UserOld    @relation(fields: [userId], references: [id])
   userId Int     @unique
 }
 
-model User {
+model UserOld {
   id      Int      @id @default(autoincrement())
   email   String   @unique
   name    String?
   posts   Post[]
   profile Profile?
+}
+
+model User {
+  id      Int      @id @default(autoincrement())
+  name    String?
+  email   String   @unique
+  picture String?
 }
