@@ -2,6 +2,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import { ReduxProvider } from "@/store/provider";
+import { ReactQueryProvider } from "@/functions/reactQuery/provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +17,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ja">
       <body className={inter.className}>
         <UserProvider>
-          <ReduxProvider>{children}</ReduxProvider>
+          <ReactQueryProvider>
+            <ReduxProvider>{children}</ReduxProvider>
+          </ReactQueryProvider>
         </UserProvider>
       </body>
     </html>
