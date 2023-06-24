@@ -3,11 +3,8 @@ import { createPromiseClient } from "@bufbuild/connect";
 import { createConnectTransport } from "@bufbuild/connect-web";
 import { ElizaService } from "@/connect/eliza_connect";
 import { useState } from "react";
-import { useGetPokemonByNameQuery } from "@/store/services/pokemon";
-import Image from "next/image";
 
 export function Eliza() {
-  const { data, error, isLoading } = useGetPokemonByNameQuery("bulbasaur");
   const [input, setInput] = useState("");
 
   const transport = createConnectTransport({
@@ -27,19 +24,6 @@ export function Eliza() {
 
   return (
     <div>
-      <div>
-        <p>pokemon api</p>
-        {error ? (
-          <>Oh no, there was an error</>
-        ) : isLoading ? (
-          <>Loading...</>
-        ) : data ? (
-          <>
-            <h3>{data.species.name}</h3>
-            <Image src={data.sprites.front_shiny} alt={data.species.name} width={100} height={100} />
-          </>
-        ) : null}
-      </div>
       <div>
         <input type="text" value={input} onChange={(e) => setInput(e.target.value)} />
         <button
