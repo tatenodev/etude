@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package etude.v1;
+
+service EtudeService {
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {}
+}
+
+message CreateUserRequest {
+  string name = 1;
+  string email = 2;
+  string picture = 3;
+}
+
+message CreateUserResponse {
+  string name = 1;
+  string email = 2;
+  string picture = 3;
+}

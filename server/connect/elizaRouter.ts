@@ -1,6 +1,6 @@
 import { ConnectRouter, ConnectError, Code } from "@bufbuild/connect";
-import { ElizaService } from "./gen/eliza_connect";
-import { prisma } from "./server";
+import { ElizaService } from "../gen/eliza_connect";
+import { prisma } from "../server";
 
 export default (router: ConnectRouter) =>
   // registers buf.connect.demo.eliza.v1.ElizaService

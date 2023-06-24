@@ -1,6 +1,6 @@
 import { fastify } from "fastify";
 import { fastifyConnectPlugin } from "@bufbuild/connect-fastify";
-import routes from "./connect";
+import elizaRouter from "./connect/elizaRouter";
 import cors from "@fastify/cors";
 import { PrismaClient } from "@prisma/client";
 
@@ -9,7 +9,7 @@ export const prisma = new PrismaClient();
 async function main() {
   const server = fastify();
   await server.register(fastifyConnectPlugin, {
-    routes,
+    routes: elizaRouter,
   });
   await server.register(cors, {
     // put your options here
