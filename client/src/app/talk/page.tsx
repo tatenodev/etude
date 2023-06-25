@@ -10,7 +10,7 @@ export default withPageAuthRequired(
       <>
         <Header />
         <Talk />
-        {/* <p>{JSON.stringify(session?.user, null, 2)}</p> */}
+        <pre>{JSON.stringify(session, null, 2)}</pre>
         <Eliza />
         <a href="/api/auth/logout">Logout</a>
       </>

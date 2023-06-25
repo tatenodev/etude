@@ -5,6 +5,7 @@ import { ElizaService } from "@/connect/eliza_connect";
 import { useState } from "react";
 import { APP_ENDPOINT_LOCAL } from "@/constants/api";
 import { useGetMessage } from "./useGetMessage";
+import { getAccessToken } from "@/functions/auth0/token/accessToken";
 
 export function Eliza() {
   const [input, setInput] = useState("");
@@ -27,6 +28,11 @@ export function Eliza() {
     console.log("createUser:", res);
   };
 
+  const getToken = async () => {
+    const token = await getAccessToken();
+    console.log("token", token);
+  };
+
   return (
     <div>
       <div>
@@ -36,6 +42,9 @@ export function Eliza() {
       </div>
       <div>
         <button onClick={createUser}>createUser</button>
+      </div>
+      <div>
+        <button onClick={getToken}>get access token</button>
       </div>
     </div>
   );
