@@ -3,8 +3,7 @@ import { APP_ENDPOINT_LOCAL } from "@/constants/api";
 import { createPromiseClient } from "@bufbuild/connect";
 import { createConnectTransport } from "@bufbuild/connect-web";
 import { useQuery } from "@tanstack/react-query";
-import { getAccessToken } from "@/functions/auth0/token/accessToken";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export const useGetMessage = (message?: string) => {
   const transport = createConnectTransport({ baseUrl: APP_ENDPOINT_LOCAL });
@@ -22,15 +21,6 @@ export const useGetMessage = (message?: string) => {
     enabled: false,
     cacheTime: 0,
   });
-
-  useEffect(() => {
-    (async () => {
-      const token = await getAccessToken();
-      if (!token) return;
-      setToken(token.access_token);
-      console.log("token", token);
-    })();
-  }, []);
 
   return {
     getMessageResult,

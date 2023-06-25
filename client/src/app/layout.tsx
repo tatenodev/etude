@@ -1,6 +1,5 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
-import { UserProvider } from "@auth0/nextjs-auth0/client";
 import { ReduxProvider } from "@/store/provider";
 import { ReactQueryProvider } from "@/functions/reactQuery/provider";
 
@@ -16,11 +15,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ja">
       <body className={inter.className}>
-        <UserProvider>
-          <ReactQueryProvider>
-            <ReduxProvider>{children}</ReduxProvider>
-          </ReactQueryProvider>
-        </UserProvider>
+        <ReactQueryProvider>
+          <ReduxProvider>{children}</ReduxProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );

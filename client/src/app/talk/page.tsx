@@ -1,20 +1,28 @@
-import { getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
+"use client";
 import { Header } from "@/app/_features/Header";
 import { Talk } from "./features/Talk";
 import { Eliza } from "./features/Eliza";
+import { signOut } from "firebase/auth";
+import { auth } from "@/functions/firebase";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
-export default withPageAuthRequired(
-  async function Dashboard() {
-    const session = await getSession();
-    return (
-      <>
-        <Header />
-        <Talk />
-        <pre>{JSON.stringify(session, null, 2)}</pre>
-        <Eliza />
-        <a href="/api/auth/logout">Logout</a>
-      </>
-    );
-  },
-  { returnTo: "/talk" }
-);
+export default function Dashboard() {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
+  const handleSignOut = async () => {
+    setLoading(true);
+    await signOut(auth);
+    router.push("/");
+  };
+
+  return (
+    <>
+      <Header />
+      <Talk />
+      <Eliza />
+      <button onClick={handleSignOut}>{loading ? "Loading..." : "Logout"}</button>
+    </>
+  );
+}
