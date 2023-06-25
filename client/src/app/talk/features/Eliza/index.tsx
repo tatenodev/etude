@@ -5,17 +5,18 @@ import { ElizaService } from "@/connect/eliza_connect";
 import { useState } from "react";
 import { APP_ENDPOINT_LOCAL } from "@/constants/api";
 import { useGetMessage } from "./useGetMessage";
-import { getAccessToken } from "@/functions/auth0/token/accessToken";
+import { signOut } from "firebase/auth";
+import { auth } from "@/functions/firebase";
+import { useRouter } from "next/navigation";
 
 export function Eliza() {
+  const router = useRouter();
+  const [loadingLogout, setLoadingLogout] = useState(false);
   const [input, setInput] = useState("");
   const { getMessageResult } = useGetMessage(input);
   const { data, refetch } = getMessageResult;
-  const message = data?.sentence;
 
-  const transport = createConnectTransport({
-    baseUrl: APP_ENDPOINT_LOCAL,
-  });
+  const transport = createConnectTransport({ baseUrl: APP_ENDPOINT_LOCAL });
   const client = createPromiseClient(ElizaService, transport);
 
   const createUser = async () => {
@@ -28,15 +29,16 @@ export function Eliza() {
     console.log("createUser:", res);
   };
 
-  const getToken = async () => {
-    const token = await getAccessToken();
-    console.log("token", token);
+  const handleSignOut = async () => {
+    setLoadingLogout(true);
+    await signOut(auth);
+    router.push("/");
   };
 
   return (
     <div>
       <div>
-        <p>{message}</p>
+        <p>{data?.sentence}</p>
         <input type="text" value={input} onChange={(e) => setInput(e.target.value)} />
         <button onClick={() => refetch()}>eliza & get user length</button>
       </div>
@@ -44,7 +46,7 @@ export function Eliza() {
         <button onClick={createUser}>createUser</button>
       </div>
       <div>
-        <button onClick={getToken}>get access token</button>
+        <button onClick={handleSignOut}>{loadingLogout ? "Loading..." : "Logout"}</button>
       </div>
     </div>
   );
