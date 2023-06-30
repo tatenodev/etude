@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { APP_ENDPOINT_LOCAL } from "@/constants/api";
 import { useGetMessage } from "./useGetMessage";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { auth } from "@/functions/firebase/firebaseConfig";
+import { primaryAuth } from "@/functions/firebase/firebaseConfig";
 import { useRouter } from "next/navigation";
 
 export function Eliza() {
@@ -31,12 +31,12 @@ export function Eliza() {
 
   const handleSignOut = async () => {
     setLoadingLogout(true);
-    await signOut(auth);
+    await signOut(primaryAuth);
     router.push("/");
   };
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(primaryAuth, (user) => {
       console.log("user:", user);
     });
   }, []);

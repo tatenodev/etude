@@ -1,7 +1,7 @@
 "use client";
 
 import { GoogleAuthProvider, onAuthStateChanged, signInWithRedirect, getRedirectResult } from "firebase/auth";
-import { auth } from "@/functions/firebase/firebaseConfig";
+import { primaryAuth } from "@/functions/firebase/firebaseConfig";
 import { useCallback, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 
@@ -10,9 +10,9 @@ export default function LoginRedirect() {
   const provider = useMemo(() => new GoogleAuthProvider(), []);
 
   const handleAuthState = useCallback(async () => {
-    const result = await getRedirectResult(auth);
+    const result = await getRedirectResult(primaryAuth);
     if (!result) {
-      signInWithRedirect(auth, provider);
+      signInWithRedirect(primaryAuth, provider);
     } else {
       router.push("/talk");
     }
