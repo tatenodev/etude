@@ -1,7 +1,7 @@
 "use client";
 
 import { GoogleAuthProvider, onAuthStateChanged, signInWithRedirect, getRedirectResult } from "firebase/auth";
-import { auth } from "@/functions/firebase";
+import { auth } from "@/functions/firebase/firebaseConfig";
 import { useCallback, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 

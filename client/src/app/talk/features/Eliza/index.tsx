@@ -2,11 +2,11 @@
 import { createPromiseClient } from "@bufbuild/connect";
 import { createConnectTransport } from "@bufbuild/connect-web";
 import { ElizaService } from "@/connect/eliza_connect";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { APP_ENDPOINT_LOCAL } from "@/constants/api";
 import { useGetMessage } from "./useGetMessage";
-import { signOut } from "firebase/auth";
-import { auth } from "@/functions/firebase";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from "@/functions/firebase/firebaseConfig";
 import { useRouter } from "next/navigation";
 
 export function Eliza() {
@@ -34,6 +34,12 @@ export function Eliza() {
     await signOut(auth);
     router.push("/");
   };
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      console.log("user:", user);
+    });
+  }, []);
 
   return (
     <div>
