@@ -9,3 +9,5 @@ export function customInitFirebaseAdminApp() {
     initializeApp(firebaseAdminConfig);
   }
 }
+
+export { auth as firebaseAdminAuth } from "firebase-admin";

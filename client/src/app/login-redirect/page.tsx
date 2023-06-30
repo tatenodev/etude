@@ -14,6 +14,9 @@ export default function LoginRedirect() {
     if (!result) {
       signInWithRedirect(primaryAuth, provider);
     } else {
+      const idToken = await result.user.getIdToken();
+      // Cookieにセッションを付与するようにAPIを投げる
+      await fetch("/api/session-login", { method: "POST", body: JSON.stringify({ idToken }) });
       router.push("/talk");
     }
   }, [provider, router]);
