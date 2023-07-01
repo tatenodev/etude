@@ -31,7 +31,8 @@ export function Eliza() {
 
   const handleSignOut = async () => {
     setLoadingLogout(true);
-    await signOut(primaryAuth);
+    // await signOut(primaryAuth);
+    await fetch("/api/session-logout", { method: "POST" });
     router.push("/");
   };
 
