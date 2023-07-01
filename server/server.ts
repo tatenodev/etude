@@ -1,12 +1,15 @@
+import "dotenv/config";
 import { fastify } from "fastify";
 import { fastifyConnectPlugin } from "@bufbuild/connect-fastify";
 import elizaRouter from "./connect/elizaRouter";
 import cors from "@fastify/cors";
 import { PrismaClient } from "@prisma/client";
+import { customInitFirebaseAdminApp } from "./utils/firebase/firebaseAdminConfig";
 
 export const prisma = new PrismaClient();
 
 async function main() {
+  customInitFirebaseAdminApp();
   const server = fastify();
   await server.register(fastifyConnectPlugin, {
     routes: elizaRouter,
