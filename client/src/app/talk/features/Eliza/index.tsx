@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { APP_ENDPOINT_LOCAL } from "@/constants/api";
 import { useGetMessage } from "./useGetMessage";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { primaryAuth } from "@/functions/firebase/firebaseConfig";
+import { firebaseAuth } from "@/functions/firebase/firebaseConfig";
 import { useRouter } from "next/navigation";
 
 export function Eliza() {
@@ -31,13 +31,13 @@ export function Eliza() {
 
   const handleSignOut = async () => {
     setLoadingLogout(true);
-    // await signOut(primaryAuth);
+    // await signOut(firebaseAuth);
     await fetch("/api/session-logout", { method: "POST" });
     router.push("/");
   };
 
   useEffect(() => {
-    onAuthStateChanged(primaryAuth, (user) => {
+    onAuthStateChanged(firebaseAuth, (user) => {
       console.log("user:", user);
     });
   }, []);

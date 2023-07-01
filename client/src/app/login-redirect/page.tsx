@@ -1,7 +1,7 @@
 "use client";
 
 import { GoogleAuthProvider, onAuthStateChanged, signInWithRedirect, getRedirectResult } from "firebase/auth";
-import { primaryAuth } from "@/functions/firebase/firebaseConfig";
+import { firebaseAuth } from "@/functions/firebase/firebaseConfig";
 import { useCallback, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 
@@ -10,9 +10,9 @@ export default function LoginRedirect() {
   const provider = useMemo(() => new GoogleAuthProvider(), []);
 
   const handleAuthState = useCallback(async () => {
-    const result = await getRedirectResult(primaryAuth);
+    const result = await getRedirectResult(firebaseAuth);
     if (!result) {
-      signInWithRedirect(primaryAuth, provider);
+      signInWithRedirect(firebaseAuth, provider);
     } else {
       const idToken = await result.user.getIdToken();
       // Cookieにセッションを付与するようにAPIを投げる
