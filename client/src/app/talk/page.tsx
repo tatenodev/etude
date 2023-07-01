@@ -17,7 +17,7 @@ export default async function Dashboard() {
     <>
       <Header />
       <Talk />
-      <Eliza />
+      <Eliza token={idToken} />
     </>
   );
 }

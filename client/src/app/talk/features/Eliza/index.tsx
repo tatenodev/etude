@@ -9,11 +9,11 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { firebaseAuth } from "@/functions/firebase/firebaseConfig";
 import { useRouter } from "next/navigation";
 
-export function Eliza() {
+export function Eliza(props: { token: string }) {
   const router = useRouter();
   const [loadingLogout, setLoadingLogout] = useState(false);
   const [input, setInput] = useState("");
-  const { getMessageResult } = useGetMessage(input);
+  const { getMessageResult } = useGetMessage(input, props.token);
   const { data, refetch } = getMessageResult;
 
   const transport = createConnectTransport({ baseUrl: APP_ENDPOINT_LOCAL });
@@ -37,7 +37,7 @@ export function Eliza() {
   };
 
   useEffect(() => {
-    onAuthStateChanged(firebaseAuth, (user) => {
+    onAuthStateChanged(firebaseAuth, async (user) => {
       console.log("user:", user);
     });
   }, []);
