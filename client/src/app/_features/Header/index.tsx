@@ -1,4 +1,4 @@
-import { Menu } from "./components/menu";
+import { Menu } from "./Menu/menu";
 
 type Props = {
   showMenu?: boolean;
