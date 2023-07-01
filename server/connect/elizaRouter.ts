@@ -1,7 +1,7 @@
 import { ConnectRouter, ConnectError, Code } from "@bufbuild/connect";
 import { ElizaService } from "../gen/eliza_connect";
 import { prisma } from "../server";
-import { verifyJWT } from "../middlware/verifyToken";
+import { verifyJWT } from "../middlware/auth0/verifyToken";
 
 export default (router: ConnectRouter) =>
   // registers buf.connect.demo.eliza.v1.ElizaService
