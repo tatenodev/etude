@@ -2,8 +2,10 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import { ReduxProvider } from "@/store/provider";
 import { ReactQueryProvider } from "@/functions/reactQuery/provider";
-import { customInitFirebaseAdminApp } from "@/functions/firebase/firebaseAdminConfig";
+import { customInitFirebaseAdminApp, firebaseAdminAuth } from "@/functions/firebase/firebaseAdminConfig";
 import { auth } from "firebase-admin";
+import { cookies } from "next/headers";
+import { UserProvider } from "@/functions/contextProvider/UserProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,6 +17,12 @@ export const metadata = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   customInitFirebaseAdminApp();
+
+  const cookieStore = cookies();
+  const auth = firebaseAdminAuth();
+  const idToken = cookieStore.get("session")?.value || "";
+  const user = await auth.verifySessionCookie(idToken, true).catch(() => null);
+
   // const user = await auth()
   //   .getUser("rE33CnF2DoOASAg0JAx656yj08K2")
   //   .then((res) => res.email);
@@ -23,9 +31,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="ja">
       <body className={inter.className}>
-        <ReactQueryProvider>
-          <ReduxProvider>{children}</ReduxProvider>
-        </ReactQueryProvider>
+        <UserProvider value={user}>
+          <ReactQueryProvider>
+            <ReduxProvider>{children}</ReduxProvider>
+          </ReactQueryProvider>
+        </UserProvider>
       </body>
     </html>
   );
