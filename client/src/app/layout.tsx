@@ -15,10 +15,10 @@ export const metadata = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   customInitFirebaseAdminApp();
-  const user = await auth()
-    .getUser("rE33CnF2DoOASAg0JAx656yj08K2")
-    .then((res) => res.email);
-  console.log("user!:", user);
+  // const user = await auth()
+  //   .getUser("rE33CnF2DoOASAg0JAx656yj08K2")
+  //   .then((res) => res.email);
+  // console.log("user!:", user);
 
   return (
     <html lang="ja">

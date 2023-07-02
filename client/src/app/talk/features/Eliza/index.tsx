@@ -1,13 +1,8 @@
 "use client";
-import { createPromiseClient } from "@bufbuild/connect";
-import { createConnectTransport } from "@bufbuild/connect-web";
-import { ElizaService } from "@/connect/eliza_connect";
-import { useEffect, useState } from "react";
-import { APP_ENDPOINT_LOCAL } from "@/constants/api";
+import { useState } from "react";
 import { useGetMessage } from "./useGetMessage";
-import { onAuthStateChanged, signOut } from "firebase/auth";
-import { firebaseAuth } from "@/functions/firebase/firebaseConfig";
 import { useRouter } from "next/navigation";
+import { elizaEndpoint } from "@/app/endpoint/elizaEndpoint";
 
 export function Eliza(props: { token: string }) {
   const router = useRouter();
@@ -16,31 +11,24 @@ export function Eliza(props: { token: string }) {
   const { getMessageResult } = useGetMessage(input, props.token);
   const { data, refetch } = getMessageResult;
 
-  const transport = createConnectTransport({ baseUrl: APP_ENDPOINT_LOCAL });
-  const client = createPromiseClient(ElizaService, transport);
-
   const createUser = async () => {
-    const res = await client.createUser({
-      name: "test name",
-      email: "test@email.com",
-      postTitle: "test title",
-      bio: "test bio",
-    });
-    console.log("createUser:", res);
+    const res = await elizaEndpoint.createUser(
+      {
+        name: "test name3",
+        email: "test3@email.com",
+        postTitle: "test title3",
+        bio: "test bio3",
+      },
+      props.token
+    );
+    console.log("createdUser:", res);
   };
 
   const handleSignOut = async () => {
     setLoadingLogout(true);
-    // await signOut(firebaseAuth);
     await fetch("/api/session-logout", { method: "POST" });
     router.push("/");
   };
-
-  useEffect(() => {
-    onAuthStateChanged(firebaseAuth, async (user) => {
-      console.log("user:", user);
-    });
-  }, []);
 
   return (
     <div>
