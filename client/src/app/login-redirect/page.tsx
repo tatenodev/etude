@@ -1,11 +1,13 @@
 "use client";
 import { GoogleAuthProvider, signInWithRedirect, getRedirectResult } from "firebase/auth";
 import { firebaseAuth } from "@/functions/firebase/firebaseConfig";
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useContext, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
+import { UserContext } from "@/functions/Context";
 
 export default function LoginRedirect() {
   const router = useRouter();
+  const user = useContext(UserContext);
   const provider = useMemo(() => new GoogleAuthProvider(), []);
 
   const handleAuthState = useCallback(async () => {
@@ -21,8 +23,12 @@ export default function LoginRedirect() {
   }, [provider, router]);
 
   useEffect(() => {
-    handleAuthState();
-  }, [handleAuthState]);
+    if (user) {
+      router.push("/talk");
+    } else {
+      handleAuthState();
+    }
+  }, [user, router, handleAuthState]);
 
   return <p>Loading...</p>;
 }

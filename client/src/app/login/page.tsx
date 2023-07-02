@@ -2,14 +2,20 @@
 
 import { GoogleAuthProvider, getRedirectResult } from "firebase/auth";
 import { firebaseAuth } from "@/functions/firebase/firebaseConfig";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { UserContext } from "@/functions/Context";
 
 export default function Login() {
+  const user = useContext(UserContext);
   const router = useRouter();
 
   const handleLogin = () => {
-    router.push("/login-redirect");
+    if (user) {
+      router.push("/talk");
+    } else {
+      router.push("/login-redirect");
+    }
   };
 
   // useEffect(() => {
