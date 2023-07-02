@@ -1,6 +1,5 @@
 "use client";
-
-import { GoogleAuthProvider, onAuthStateChanged, signInWithRedirect, getRedirectResult } from "firebase/auth";
+import { GoogleAuthProvider, signInWithRedirect, getRedirectResult } from "firebase/auth";
 import { firebaseAuth } from "@/functions/firebase/firebaseConfig";
 import { useCallback, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
@@ -23,9 +22,6 @@ export default function LoginRedirect() {
 
   useEffect(() => {
     handleAuthState();
-    // onAuthStateChanged(auth, (user) => {
-    //   if (user) router.push("/talk");
-    // });
   }, [handleAuthState]);
 
   return <p>Loading...</p>;

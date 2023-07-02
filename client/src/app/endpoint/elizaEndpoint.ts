@@ -2,15 +2,10 @@ import { APP_ENDPOINT_LOCAL } from "@/constants/api";
 import { createPromiseClient } from "@bufbuild/connect";
 import { createConnectTransport } from "@bufbuild/connect-web";
 import { ElizaService } from "@/connect/eliza_connect";
-import { cookies } from "next/headers";
 import { UserRequest } from "@/connect/eliza_pb";
 
 const transport = createConnectTransport({ baseUrl: APP_ENDPOINT_LOCAL });
 const client = createPromiseClient(ElizaService, transport);
-
-// const headers = new Headers();
-// const token = cookies().get("session")?.value;
-// headers.set("Authorization", `Bearer ${token}`);
 
 const setHeader = (token: string) => ({ Authorization: `Bearer ${token}` });
 
