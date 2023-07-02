@@ -17,9 +17,9 @@
     "@bufbuild/buf": "^1.21.0-1",
     "@bufbuild/connect": "^0.10.0",
     "@bufbuild/connect-fastify": "^0.10.0",
+    "@bufbuild/connect-query": "^0.3.0",
     "@bufbuild/protobuf": "^1.2.1",
     "@bufbuild/protoc-gen-connect-es": "^0.10.0",
-    "@bufbuild/protoc-gen-es": "^1.2.1",
     "@fastify/cors": "^8.3.0",
     "@prisma/client": "^4.16.1",
     "dotenv": "^16.3.1",
@@ -30,6 +30,8 @@
     "tsx": "^3.12.7"
   },
   "devDependencies": {
+    "@bufbuild/protoc-gen-connect-query": "^0.3.0",
+    "@bufbuild/protoc-gen-es": "^1.2.1",
     "@types/node": "^20.3.1",
     "prisma": "^4.16.1",
     "ts-node": "^10.9.1",
