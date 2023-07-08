@@ -1,28 +1,31 @@
 "use client";
 import { useState } from "react";
-import { useGetMessage } from "./useGetMessage";
 import { useRouter } from "next/navigation";
-import { elizaEndpoint } from "@/app/endpoint/elizaEndpoint";
+import { useHello } from "./useHello";
 
-export function Eliza(props: { token: string }) {
+type ElizaProps = {
+  token: string;
+};
+
+export function Eliza({ token }: ElizaProps) {
   const router = useRouter();
   const [loadingLogout, setLoadingLogout] = useState(false);
   const [input, setInput] = useState("");
-  const { getMessageResult } = useGetMessage(input, props.token);
-  const { data, refetch } = getMessageResult;
+  const { helloResult } = useHello(input, token);
+  const { data, refetch } = helloResult;
 
-  const createUser = async () => {
-    const res = await elizaEndpoint.createUser(
-      {
-        name: "test name3",
-        email: "test3@email.com",
-        postTitle: "test title3",
-        bio: "test bio3",
-      },
-      props.token
-    );
-    console.log("createdUser:", res);
-  };
+  // const createUser = async () => {
+  //   const res = await elizaEndpoint.createUser(
+  //     {
+  //       name: "test name3",
+  //       email: "test3@email.com",
+  //       postTitle: "test title3",
+  //       bio: "test bio3",
+  //     },
+  //     props.token
+  //   );
+  //   console.log("createdUser:", res);
+  // };
 
   const handleSignOut = async () => {
     setLoadingLogout(true);
@@ -33,12 +36,9 @@ export function Eliza(props: { token: string }) {
   return (
     <div>
       <div>
-        <p>{data?.sentence}</p>
+        <p>message: {data?.message}</p>
         <input type="text" value={input} onChange={(e) => setInput(e.target.value)} />
         <button onClick={() => refetch()}>eliza & get user length</button>
-      </div>
-      <div>
-        <button onClick={createUser}>createUser</button>
       </div>
       <div>
         <button onClick={handleSignOut}>{loadingLogout ? "Loading..." : "Logout"}</button>

@@ -3,7 +3,15 @@ syntax = "proto3";
 package etude.v1;
 
 service EtudeService {
+  rpc Hello(HelloRequest) returns (HelloResponse) {}
   rpc GetUser(GetUserRequest) returns (GetUserResponse) {}
+}
+
+message HelloRequest {
+  string message = 1;
+}
+message HelloResponse {
+  string message = 1;
 }
 
 message GetUserRequest {
