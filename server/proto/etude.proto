@@ -3,16 +3,14 @@ syntax = "proto3";
 package etude.v1;
 
 service EtudeService {
-  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {}
+  rpc GetUser(GetUserRequest) returns (GetUserResponse) {}
 }
 
-message CreateUserRequest {
-  string name = 1;
-  string email = 2;
-  string picture = 3;
+message GetUserRequest {
+  string email = 1;
 }
 
-message CreateUserResponse {
+message GetUserResponse {
   string name = 1;
   string email = 2;
   string picture = 3;

@@ -10,35 +10,46 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Post {
+model User {
+  id          Int          @id @default(autoincrement())
+  name        String
+  email       String       @unique
+  teamMembers TeamMember[]
+  talkMembers TalkMember[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+model Team {
+  id        Int          @id @default(autoincrement())
+  members   TeamMember[]
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+}
+
+model TeamMember {
   id        Int      @id @default(autoincrement())
+  team      Team     @relation(fields: [teamId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+  isOwner   Boolean
+  teamId    Int
+  userId    Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  title     String   @db.VarChar(255)
-  content   String?
-  published Boolean  @default(false)
-  author    UserOld     @relation(fields: [authorId], references: [id])
-  authorId  Int
+
+  @@unique([teamId, userId])
 }
 
-model Profile {
-  id     Int     @id @default(autoincrement())
-  bio    String?
-  user   UserOld    @relation(fields: [userId], references: [id])
-  userId Int     @unique
+model Talk {
+  id          Int          @id @default(autoincrement())
+  title       String
+  talkMembers TalkMember[]
 }
 
-model UserOld {
-  id      Int      @id @default(autoincrement())
-  email   String   @unique
-  name    String?
-  posts   Post[]
-  profile Profile?
-}
-
-model User {
-  id      Int      @id @default(autoincrement())
-  name    String?
-  email   String   @unique
-  picture String?
+model TalkMember {
+  id     Int  @id @default(autoincrement())
+  talk   Talk @relation(fields: [talkId], references: [id])
+  user   User @relation(fields: [userId], references: [id])
+  userId Int
+  talkId Int
 }
