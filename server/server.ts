@@ -1,7 +1,6 @@
 import "dotenv/config";
 import { fastify } from "fastify";
 import { fastifyConnectPlugin } from "@bufbuild/connect-fastify";
-import elizaRouter from "./connect/elizaRouter";
 import etudeRouter from "./connect/etudeRouter";
 import cors from "@fastify/cors";
 import { PrismaClient } from "@prisma/client";

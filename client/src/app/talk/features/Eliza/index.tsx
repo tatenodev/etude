@@ -10,9 +10,8 @@ type ElizaProps = {
 export function Eliza({ token }: ElizaProps) {
   const router = useRouter();
   const [loadingLogout, setLoadingLogout] = useState(false);
-  const [input, setInput] = useState("");
-  const { helloResult } = useHello(input, token);
-  const { data, refetch } = helloResult;
+  const { helloResult } = useHello("hello world!!", token);
+  const { data } = helloResult;
 
   // const createUser = async () => {
   //   const res = await elizaEndpoint.createUser(
@@ -35,11 +34,7 @@ export function Eliza({ token }: ElizaProps) {
 
   return (
     <div>
-      <div>
-        <p>message: {data?.message}</p>
-        <input type="text" value={input} onChange={(e) => setInput(e.target.value)} />
-        <button onClick={() => refetch()}>eliza & get user length</button>
-      </div>
+      <p>message: {data?.message}</p>
       <div>
         <button onClick={handleSignOut}>{loadingLogout ? "Loading..." : "Logout"}</button>
       </div>
