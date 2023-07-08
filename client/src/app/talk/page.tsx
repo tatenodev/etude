@@ -17,6 +17,7 @@ export default async function Dashboard() {
     <>
       <Header />
       <Talk />
+      {JSON.stringify(user)}
       <Eliza token={idToken} />
     </>
   );
