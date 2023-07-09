@@ -1,4 +1,4 @@
-import { firebaseAdminAuth } from "@/functions/firebase/firebaseAdminConfig";
+import { firebaseAdminAuth } from "@/utils/firebase/firebaseAdminConfig";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { Header } from "@/app/_features/Header";

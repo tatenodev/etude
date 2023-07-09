@@ -1,9 +1,9 @@
 "use client";
 import { GoogleAuthProvider, signInWithRedirect, getRedirectResult } from "firebase/auth";
-import { firebaseAuth } from "@/functions/firebase/firebaseConfig";
+import { firebaseAuth } from "@/utils/firebase/firebaseConfig";
 import { useCallback, useContext, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import { UserContext } from "@/functions/Context";
+import { UserContext } from "@/providers/contextProvider/Context";
 
 export default function LoginRedirect() {
   const router = useRouter();

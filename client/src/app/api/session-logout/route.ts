@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { firebaseAdminAuth } from "@/functions/firebase/firebaseAdminConfig";
+import { firebaseAdminAuth } from "@/utils/firebase/firebaseAdminConfig";
 
 export async function POST(request: Response) {
   const auth = firebaseAdminAuth();

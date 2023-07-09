@@ -1,7 +1,7 @@
 "use client";
 
 import { DecodedIdToken } from "firebase-admin/lib/auth/token-verifier";
-import { UserContext } from "../Context";
+import { UserContext } from "./Context";
 
 type UserProviderProps = {
   children: React.ReactNode;

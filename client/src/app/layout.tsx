@@ -1,11 +1,11 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { ReduxProvider } from "@/store/provider";
-import { ReactQueryProvider } from "@/functions/reactQuery/provider";
-import { customInitFirebaseAdminApp, firebaseAdminAuth } from "@/functions/firebase/firebaseAdminConfig";
+import { ReactQueryProvider } from "@/providers/reactQuery/provider";
+import { customInitFirebaseAdminApp, firebaseAdminAuth } from "@/utils/firebase/firebaseAdminConfig";
 import { auth } from "firebase-admin";
 import { cookies } from "next/headers";
-import { UserProvider } from "@/functions/contextProvider/UserProvider";
+import { UserProvider } from "@/providers/contextProvider/UserProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 

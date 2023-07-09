@@ -1,6 +1,6 @@
 "use client";
 
-import { UserContext } from "@/functions/Context";
+import { UserContext } from "@/providers/contextProvider/Context";
 import { useContext } from "react";
 
 export default function Report() {
