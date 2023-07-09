@@ -1,10 +1,8 @@
 import { ConnectRouter, ConnectError, Code } from "@bufbuild/connect";
 import { prisma } from "../server";
 import { EtudeService } from "../gen/etude_connect";
-import { firebaseAdminAuth } from "../utils/firebase/firebaseAdminConfig";
 
 export default (router: ConnectRouter) => {
-  const auth = firebaseAdminAuth();
   return router.service(EtudeService, {
     async hello(req, context) {
       return { message: req.message };

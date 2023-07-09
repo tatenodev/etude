@@ -4,7 +4,7 @@ import { fastifyConnectPlugin } from "@bufbuild/connect-fastify";
 import etudeRouter from "./connect/etudeRouter";
 import cors from "@fastify/cors";
 import { PrismaClient } from "@prisma/client";
-import { customInitFirebaseAdminApp } from "./utils/firebase/firebaseAdminConfig";
+import { customInitFirebaseAdminApp, firebaseAdminAuth } from "./utils/firebase/firebaseAdminConfig";
 
 export const prisma = new PrismaClient();
 
