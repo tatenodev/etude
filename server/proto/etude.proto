@@ -4,9 +4,11 @@ package etude.v1;
 
 service EtudeService {
   rpc Hello(HelloRequest) returns (HelloResponse) {}
+  rpc CreateUser(CreateUserRequest) returns (Empty) {}
   // rpc GetTalk() returns () {}
-  rpc GetUser(GetUserRequest) returns (GetUserResponse) {}
 }
+
+message Empty {}
 
 message HelloRequest {
   string message = 1;
@@ -15,16 +17,12 @@ message HelloResponse {
   string message = 1;
 }
 
+message CreateUserRequest {
+  string googleUserId = 1;
+  string email = 2;
+  string name = 3;
+}
+
 // message GetTalkRequest {
 //   optional string message = 1;
 // }
-
-message GetUserRequest {
-  string email = 1;
-}
-
-message GetUserResponse {
-  string name = 1;
-  string email = 2;
-  string picture = 3;
-}

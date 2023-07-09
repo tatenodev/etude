@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { GetUserRequest, GetUserResponse, HelloRequest, HelloResponse } from "./etude_pb.ts";
+import { CreateUserRequest, Empty, HelloRequest, HelloResponse } from "./etude_pb.ts";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -22,12 +22,12 @@ export const EtudeService = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc etude.v1.EtudeService.GetUser
+     * @generated from rpc etude.v1.EtudeService.CreateUser
      */
-    getUser: {
-      name: "GetUser",
-      I: GetUserRequest,
-      O: GetUserResponse,
+    createUser: {
+      name: "CreateUser",
+      I: CreateUserRequest,
+      O: Empty,
       kind: MethodKind.Unary,
     },
   }
