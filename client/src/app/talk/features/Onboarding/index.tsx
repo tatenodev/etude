@@ -12,14 +12,8 @@ type OnboardingProps = {
 export function Onboarding({ session, token }: OnboardingProps) {
   const [teamName, setTeamName] = useState("マイチーム");
 
-  const handleCreateTeam = async (teamName: string, session: DecodedIdToken, token: string) => {
-    const res = await etudeEndpoint.createInitialTeam({
-      googleUserId: session.uid,
-      userName: session.name ?? "no name",
-      email: session.email,
-      teamName,
-      token,
-    });
+  const handleCreateTeam = async (teamName: string, token: string) => {
+    const res = await etudeEndpoint.createInitialTeam({ teamName, token });
     console.log("handleCreateTeam", res);
   };
 
@@ -33,7 +27,7 @@ export function Onboarding({ session, token }: OnboardingProps) {
         value={teamName}
         onChange={(e) => setTeamName(e.target.value)}
       />
-      <button onClick={() => handleCreateTeam(teamName, session, token)}>作成</button>
+      <button onClick={() => handleCreateTeam(teamName, token)}>作成</button>
     </div>
   );
 }

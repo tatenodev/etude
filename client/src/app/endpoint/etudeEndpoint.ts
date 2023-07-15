@@ -13,14 +13,6 @@ type CreateinitialTeamProps = PartialMessage<CreateTeamRequest> & { token: strin
 
 export const etudeEndpoint = {
   hello: (message: string, token: string) => client.hello({ message }, { headers: setHeader(token) }),
-  createInitialTeam: ({ googleUserId, userName, email, teamName, token }: CreateinitialTeamProps) =>
-    client.createInitialTeam(
-      {
-        googleUserId,
-        userName,
-        email,
-        teamName,
-      },
-      { headers: setHeader(token) }
-    ),
+  createInitialTeam: ({ teamName, token }: CreateinitialTeamProps) =>
+    client.createInitialTeam({ teamName }, { headers: setHeader(token) }),
 };

@@ -116,22 +116,7 @@ export class HelloResponse extends Message<HelloResponse> {
  */
 export class CreateTeamRequest extends Message<CreateTeamRequest> {
   /**
-   * @generated from field: string googleUserId = 1;
-   */
-  googleUserId = "";
-
-  /**
-   * @generated from field: string userName = 2;
-   */
-  userName = "";
-
-  /**
-   * @generated from field: string email = 3;
-   */
-  email = "";
-
-  /**
-   * @generated from field: string teamName = 4;
+   * @generated from field: string teamName = 1;
    */
   teamName = "";
 
@@ -143,10 +128,7 @@ export class CreateTeamRequest extends Message<CreateTeamRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "etude.v1.CreateTeamRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "googleUserId", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "userName", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "email", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "teamName", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "teamName", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateTeamRequest {
