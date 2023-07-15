@@ -3,7 +3,7 @@ import { Header } from "@/app/_features/Header";
 import { Talk } from "./features/Talk";
 import { Eliza } from "./features/Eliza";
 import { getSession } from "@/utils/session";
-import { Guide } from "./features/Guide";
+import { Onboarding } from "./features/Onboarding";
 
 export default async function Dashboard() {
   const { user, idToken } = await getSession();
@@ -13,7 +13,7 @@ export default async function Dashboard() {
   return (
     <>
       <Header />
-      <Guide />
+      <Onboarding userName={user.name} />
       <Talk />
       {JSON.stringify(user)}
       <Eliza token={idToken} />
