@@ -112,51 +112,57 @@ export class HelloResponse extends Message<HelloResponse> {
 }
 
 /**
- * @generated from message etude.v1.CreateUserRequest
+ * @generated from message etude.v1.CreateTeamRequest
  */
-export class CreateUserRequest extends Message<CreateUserRequest> {
+export class CreateTeamRequest extends Message<CreateTeamRequest> {
   /**
    * @generated from field: string googleUserId = 1;
    */
   googleUserId = "";
 
   /**
-   * @generated from field: string email = 2;
+   * @generated from field: string userName = 2;
+   */
+  userName = "";
+
+  /**
+   * @generated from field: string email = 3;
    */
   email = "";
 
   /**
-   * @generated from field: string name = 3;
+   * @generated from field: string teamName = 4;
    */
-  name = "";
+  teamName = "";
 
-  constructor(data?: PartialMessage<CreateUserRequest>) {
+  constructor(data?: PartialMessage<CreateTeamRequest>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "etude.v1.CreateUserRequest";
+  static readonly typeName = "etude.v1.CreateTeamRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "googleUserId", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "email", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "userName", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "email", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "teamName", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateUserRequest {
-    return new CreateUserRequest().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateTeamRequest {
+    return new CreateTeamRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateUserRequest {
-    return new CreateUserRequest().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateTeamRequest {
+    return new CreateTeamRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateUserRequest {
-    return new CreateUserRequest().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateTeamRequest {
+    return new CreateTeamRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: CreateUserRequest | PlainMessage<CreateUserRequest> | undefined, b: CreateUserRequest | PlainMessage<CreateUserRequest> | undefined): boolean {
-    return proto3.util.equals(CreateUserRequest, a, b);
+  static equals(a: CreateTeamRequest | PlainMessage<CreateTeamRequest> | undefined, b: CreateTeamRequest | PlainMessage<CreateTeamRequest> | undefined): boolean {
+    return proto3.util.equals(CreateTeamRequest, a, b);
   }
 }
 

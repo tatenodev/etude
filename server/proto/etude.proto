@@ -4,7 +4,7 @@ package etude.v1;
 
 service EtudeService {
   rpc Hello(HelloRequest) returns (HelloResponse) {}
-  rpc CreateTeam(CreateTeamRequest) returns (Empty) {}
+  rpc CreateInitialTeam(CreateTeamRequest) returns (Empty) {}
   // rpc GetTalk() returns () {}
 }
 
@@ -18,7 +18,10 @@ message HelloResponse {
 }
 
 message CreateTeamRequest {
-  
+  string googleUserId = 1;
+  string userName = 2;
+  string email = 3;
+  string teamName = 4;
 }
 
 // message GetTalkRequest {

@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CreateUserRequest, Empty, HelloRequest, HelloResponse } from "./etude_pb.ts";
+import { CreateTeamRequest, Empty, HelloRequest, HelloResponse } from "./etude_pb.ts";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -22,11 +22,11 @@ export const EtudeService = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc etude.v1.EtudeService.CreateUser
+     * @generated from rpc etude.v1.EtudeService.CreateInitialTeam
      */
-    createUser: {
-      name: "CreateUser",
-      I: CreateUserRequest,
+    createInitialTeam: {
+      name: "CreateInitialTeam",
+      I: CreateTeamRequest,
       O: Empty,
       kind: MethodKind.Unary,
     },

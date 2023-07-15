@@ -7,6 +7,33 @@ export default (router: ConnectRouter) => {
     async hello(req, context) {
       return { message: req.message };
     },
+    async createInitialTeam(req) {
+      const res = prisma.team.create({
+        data: {
+          name: req.teamName,
+          members: {
+            create: [
+              {
+                user: {
+                  create: {
+                    googleUserId: req.googleUserId,
+                    name: req.userName,
+                    email: req.email,
+                  },
+                },
+                isOwner: true,
+              },
+            ],
+          },
+        },
+        include: {
+          members: true,
+        },
+      });
+      console.log("createInitialTeam:", res);
+
+      return { status: "success" };
+    },
     // async createUser(req, context) {
     //   const token = context.requestHeader.get("authorization")?.replace("Bearer ", "") ?? "";
     //   const sessionUser = await auth.verifySessionCookie(token);
