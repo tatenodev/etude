@@ -3,10 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "run-p dev:next dev:scss",
-    "dev:next": "next dev",
-    "dev:scss": "typed-scss-modules src --watch",
-    "typegen:scss": "typed-scss-modules src",
+    "dev": "next dev",
     "cp": "cp -R ../server/gen/ src/connect/",
     "build": "next build",
     "start": "next start",
