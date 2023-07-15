@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import { ReduxProvider } from "@/store/provider";
 import { ReactQueryProvider } from "@/providers/reactQuery/provider";
 import { customInitFirebaseAdminApp, firebaseAdminAuth } from "@/utils/firebase/firebaseAdminConfig";
-import { auth } from "firebase-admin";
 import { cookies } from "next/headers";
 import { UserProvider } from "@/providers/contextProvider/UserProvider";
 
@@ -22,11 +21,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const auth = firebaseAdminAuth();
   const idToken = cookieStore.get("session")?.value || "";
   const user = await auth.verifySessionCookie(idToken, true).catch(() => null);
-
-  // const user = await auth()
-  //   .getUser("rE33CnF2DoOASAg0JAx656yj08K2")
-  //   .then((res) => res.email);
-  // console.log("user!:", user);
 
   return (
     <html lang="ja">

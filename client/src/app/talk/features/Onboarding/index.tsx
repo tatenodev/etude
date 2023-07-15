@@ -1,7 +1,6 @@
 "use client";
 
 import { etudeEndpoint } from "@/app/endpoint/etudeEndpoint";
-import { DecodedIdToken } from "firebase-admin/lib/auth/token-verifier";
 import { useState } from "react";
 
 type OnboardingProps = {
