@@ -1,5 +1,5 @@
 import { Card } from "./components/card";
-import style from "./index.module.scss";
+import { cardWrapper } from "./index.css";
 import { GoCommentDiscussion } from "react-icons/go";
 
 const mockData = [
@@ -12,7 +12,7 @@ export function Talk() {
   return (
     <div>
       <h2 style={{ fontSize: 22 }}>予定されているトーク</h2>
-      <div className={style.cardWrapper}>
+      <div className={cardWrapper}>
         {mockData.map((item, index) => (
           <Card key={index.toString()} title={item.title} date={item.date} />
         ))}

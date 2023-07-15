@@ -1,4 +1,4 @@
-import style from "./card.module.scss";
+import { cardItem } from "./card.css";
 
 type Props = {
   title: string;
@@ -7,7 +7,7 @@ type Props = {
 
 export function Card(props: Props) {
   return (
-    <div className={style.cardItem}>
+    <div className={cardItem}>
       <article>
         <h3>{props.title}</h3>
         <p>{props.date}</p>
