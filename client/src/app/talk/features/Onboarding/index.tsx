@@ -2,13 +2,8 @@
 
 import { useState } from "react";
 
-type GuideProps = {
-  userName: string;
-};
-
-export function Onboarding({ userName }: GuideProps) {
-  const name = userName ? `${userName}のチーム` : "マイチーム";
-  const [teamName, setTeamName] = useState(name);
+export function Onboarding() {
+  const [teamName, setTeamName] = useState("マイチーム");
 
   const handleCreateTeam = () => {
     alert(`チーム作成 ${teamName}`);

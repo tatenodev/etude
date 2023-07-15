@@ -13,7 +13,7 @@ export default async function Dashboard() {
   return (
     <>
       <Header />
-      <Onboarding userName={user.name} />
+      <Onboarding />
       <Talk />
       {JSON.stringify(user)}
       <Eliza token={idToken} />
