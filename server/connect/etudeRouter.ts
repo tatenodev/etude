@@ -30,7 +30,7 @@ export default (router: ConnectRouter) => {
           members: true,
         },
       });
-      console.log("createInitialTeam:", res);
+      console.log("createInitialTeam:", await res.then((a) => a));
 
       return { status: "success" };
     },
