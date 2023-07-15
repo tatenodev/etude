@@ -5,11 +5,10 @@ import { DecodedIdToken } from "firebase-admin/lib/auth/token-verifier";
 import { useState } from "react";
 
 type OnboardingProps = {
-  session: DecodedIdToken;
   token: string;
 };
 
-export function Onboarding({ session, token }: OnboardingProps) {
+export function Onboarding({ token }: OnboardingProps) {
   const [teamName, setTeamName] = useState("マイチーム");
 
   const handleCreateTeam = async (teamName: string, token: string) => {
