@@ -39,7 +39,7 @@ message Team {
 
 message HomeResponse {
   User user = 1;
-  repeated Team team = 2;
+  repeated Team teams = 2;
 }
 
 // message GetTalkRequest {

@@ -287,9 +287,9 @@ export class HomeResponse extends Message<HomeResponse> {
   user?: User;
 
   /**
-   * @generated from field: repeated etude.v1.Team team = 2;
+   * @generated from field: repeated etude.v1.Team teams = 2;
    */
-  team: Team[] = [];
+  teams: Team[] = [];
 
   constructor(data?: PartialMessage<HomeResponse>) {
     super();
@@ -300,7 +300,7 @@ export class HomeResponse extends Message<HomeResponse> {
   static readonly typeName = "etude.v1.HomeResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "user", kind: "message", T: User },
-    { no: 2, name: "team", kind: "message", T: Team, repeated: true },
+    { no: 2, name: "teams", kind: "message", T: Team, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): HomeResponse {

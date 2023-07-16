@@ -4,9 +4,12 @@ import { Talk } from "./features/Talk";
 import { Eliza } from "./features/Eliza";
 import { getSession } from "@/utils/session";
 import { Onboarding } from "./features/Onboarding";
+import { etudeEndpoint } from "../endpoint/etudeEndpoint";
 
 export default async function Dashboard() {
   const { user, idToken } = await getSession();
+  const hoge = await etudeEndpoint.home(idToken);
+  console.log("hoge", hoge);
 
   if (!user) redirect("/login");
 

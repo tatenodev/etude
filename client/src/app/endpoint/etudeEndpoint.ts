@@ -15,4 +15,5 @@ export const etudeEndpoint = {
   hello: (message: string, token: string) => client.hello({ message }, { headers: setHeader(token) }),
   createInitialTeam: ({ teamName, token }: CreateinitialTeamProps) =>
     client.createInitialTeam({ teamName }, { headers: setHeader(token) }),
+  home: (token: string) => client.home({}, { headers: setHeader(token) }),
 };

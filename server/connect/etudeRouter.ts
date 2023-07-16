@@ -48,7 +48,7 @@ export default (router: ConnectRouter) => {
         const session = await auth.verifySessionCookie(token);
         if (!session.email) throw new Error("Email does not exist.");
 
-        const user = await prisma.user.findUniqueOrThrow({
+        const user = await prisma.user.findUnique({
           where: { googleUserId: session.uid },
           include: {
             teamMembers: {
@@ -57,11 +57,18 @@ export default (router: ConnectRouter) => {
           },
         });
 
+        if (!user) {
+          return {
+            user: {},
+            teams: [],
+          };
+        }
+
         const formatTeams = user.teamMembers.map((member) => ({
           name: member.team.name,
           talks: member.team.talks.map((talk) => ({
             title: talk.title,
-            startedAt: talk.startedAt,
+            startedAt: talk.startedAt.toISOString(),
           })),
         }));
 
