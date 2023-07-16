@@ -8,15 +8,15 @@ import { etudeEndpoint } from "../endpoint/etudeEndpoint";
 
 export default async function Dashboard() {
   const { user, idToken } = await getSession();
-  const hoge = await etudeEndpoint.home(idToken);
-  console.log("hoge", hoge);
+  const home = await etudeEndpoint.home(idToken);
+  console.log("home:", home);
 
   if (!user) redirect("/login");
 
   return (
     <>
       <Header />
-      <Onboarding token={idToken} />
+      {!home.user?.email && <Onboarding token={idToken} />}
       <Talk />
       {JSON.stringify(user)}
       <Eliza token={idToken} />
