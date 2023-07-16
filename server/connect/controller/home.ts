@@ -1,6 +1,6 @@
 import { Code, ConnectError, HandlerContext } from "@bufbuild/connect";
-import { prisma } from "../../server";
-import { verifySession } from "../middleware/verifySession";
+import { prisma } from "@src/app";
+import { verifySession } from "@src/connect/middleware/verifySession";
 import { Empty } from "@bufbuild/protobuf";
 
 export const home = async (_: Empty, context: HandlerContext) => {

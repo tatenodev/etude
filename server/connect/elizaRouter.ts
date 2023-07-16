@@ -1,6 +1,6 @@
 import { ConnectRouter, ConnectError, Code } from "@bufbuild/connect";
 import { ElizaService } from "../gen/eliza_connect";
-import { prisma } from "../server";
+import { prisma } from "../app";
 import { customInitFirebaseAdminApp, firebaseAdminAuth } from "../utils/firebase/firebaseAdminConfig";
 
 export default (router: ConnectRouter) => {

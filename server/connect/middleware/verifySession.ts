@@ -1,5 +1,5 @@
 import { HandlerContext } from "@bufbuild/connect";
-import { firebaseAdminAuth } from "../../utils/firebase/firebaseAdminConfig";
+import { firebaseAdminAuth } from "@src/utils/firebase/firebaseAdminConfig";
 
 export const verifySession = async (context: HandlerContext) => {
   const auth = firebaseAdminAuth();

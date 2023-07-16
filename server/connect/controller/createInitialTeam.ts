@@ -1,6 +1,6 @@
 import { Code, ConnectError, HandlerContext } from "@bufbuild/connect";
 import { CreateTeamRequest } from "../../gen/etude_pb";
-import { prisma } from "../../server";
+import { prisma } from "../../app";
 import { verifySession } from "../middleware/verifySession";
 
 export const createInitialTeam = async (req: CreateTeamRequest, context: HandlerContext) => {

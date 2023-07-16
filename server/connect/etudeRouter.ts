@@ -1,5 +1,5 @@
 import { ConnectRouter } from "@bufbuild/connect";
-import { EtudeService } from "../gen/etude_connect";
+import { EtudeService } from "@src/gen/etude_connect";
 import { home } from "./controller/home";
 import { createInitialTeam } from "./controller/createInitialTeam";
 
