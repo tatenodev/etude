@@ -13,6 +13,7 @@ CREATE TABLE "User" (
 -- CreateTable
 CREATE TABLE "Team" (
     "id" SERIAL NOT NULL,
+    "name" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -35,7 +36,10 @@ CREATE TABLE "TeamMember" (
 CREATE TABLE "Talk" (
     "id" SERIAL NOT NULL,
     "title" TEXT NOT NULL,
+    "teamId" INTEGER NOT NULL,
     "startedAt" TIMESTAMP(3) NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Talk_pkey" PRIMARY KEY ("id")
 );
@@ -45,6 +49,7 @@ CREATE TABLE "TalkMember" (
     "id" SERIAL NOT NULL,
     "userId" INTEGER NOT NULL,
     "talkId" INTEGER NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "TalkMember_pkey" PRIMARY KEY ("id")
 );
@@ -58,11 +63,17 @@ CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 -- CreateIndex
 CREATE UNIQUE INDEX "TeamMember_teamId_userId_key" ON "TeamMember"("teamId", "userId");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "TalkMember_talkId_userId_key" ON "TalkMember"("talkId", "userId");
+
 -- AddForeignKey
 ALTER TABLE "TeamMember" ADD CONSTRAINT "TeamMember_teamId_fkey" FOREIGN KEY ("teamId") REFERENCES "Team"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "TeamMember" ADD CONSTRAINT "TeamMember_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Talk" ADD CONSTRAINT "Talk_teamId_fkey" FOREIGN KEY ("teamId") REFERENCES "Team"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "TalkMember" ADD CONSTRAINT "TalkMember_talkId_fkey" FOREIGN KEY ("talkId") REFERENCES "Talk"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
