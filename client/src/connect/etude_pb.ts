@@ -148,3 +148,132 @@ export class CreateTeamRequest extends Message<CreateTeamRequest> {
   }
 }
 
+/**
+ * @generated from message etude.v1.User
+ */
+export class User extends Message<User> {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
+
+  /**
+   * @generated from field: string email = 2;
+   */
+  email = "";
+
+  constructor(data?: PartialMessage<User>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "etude.v1.User";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "email", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): User {
+    return new User().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): User {
+    return new User().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): User {
+    return new User().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: User | PlainMessage<User> | undefined, b: User | PlainMessage<User> | undefined): boolean {
+    return proto3.util.equals(User, a, b);
+  }
+}
+
+/**
+ * @generated from message etude.v1.Talk
+ */
+export class Talk extends Message<Talk> {
+  /**
+   * @generated from field: string title = 1;
+   */
+  title = "";
+
+  /**
+   * @generated from field: string startedAt = 2;
+   */
+  startedAt = "";
+
+  constructor(data?: PartialMessage<Talk>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "etude.v1.Talk";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "title", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "startedAt", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Talk {
+    return new Talk().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Talk {
+    return new Talk().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Talk {
+    return new Talk().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Talk | PlainMessage<Talk> | undefined, b: Talk | PlainMessage<Talk> | undefined): boolean {
+    return proto3.util.equals(Talk, a, b);
+  }
+}
+
+/**
+ * @generated from message etude.v1.HomeResponse
+ */
+export class HomeResponse extends Message<HomeResponse> {
+  /**
+   * @generated from field: etude.v1.User user = 1;
+   */
+  user?: User;
+
+  /**
+   * @generated from field: repeated etude.v1.Talk talk = 2;
+   */
+  talk: Talk[] = [];
+
+  constructor(data?: PartialMessage<HomeResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "etude.v1.HomeResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "user", kind: "message", T: User },
+    { no: 2, name: "talk", kind: "message", T: Talk, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): HomeResponse {
+    return new HomeResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): HomeResponse {
+    return new HomeResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): HomeResponse {
+    return new HomeResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: HomeResponse | PlainMessage<HomeResponse> | undefined, b: HomeResponse | PlainMessage<HomeResponse> | undefined): boolean {
+    return proto3.util.equals(HomeResponse, a, b);
+  }
+}
+

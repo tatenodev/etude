@@ -5,6 +5,7 @@ package etude.v1;
 service EtudeService {
   rpc Hello(HelloRequest) returns (HelloResponse) {}
   rpc CreateInitialTeam(CreateTeamRequest) returns (Empty) {}
+  rpc Home(Empty) returns (HomeResponse) {}
   // rpc GetTalk() returns () {}
 }
 
@@ -19,6 +20,21 @@ message HelloResponse {
 
 message CreateTeamRequest {
   string teamName = 1;
+}
+
+message User {
+  string name = 1;
+  string email = 2;
+}
+
+message Talk {
+  string title = 1;
+  string startedAt = 2;
+}
+
+message HomeResponse {
+  User user = 1;
+  repeated Talk talk = 2;
 }
 
 // message GetTalkRequest {
