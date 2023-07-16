@@ -32,9 +32,14 @@ message Talk {
   string startedAt = 2;
 }
 
+message Team {
+  string name = 1;
+  repeated Talk talks = 2;
+}
+
 message HomeResponse {
   User user = 1;
-  repeated Talk talk = 2;
+  repeated Team team = 2;
 }
 
 // message GetTalkRequest {

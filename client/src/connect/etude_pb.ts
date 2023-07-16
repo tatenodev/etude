@@ -235,6 +235,49 @@ export class Talk extends Message<Talk> {
 }
 
 /**
+ * @generated from message etude.v1.Team
+ */
+export class Team extends Message<Team> {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
+
+  /**
+   * @generated from field: repeated etude.v1.Talk talks = 2;
+   */
+  talks: Talk[] = [];
+
+  constructor(data?: PartialMessage<Team>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "etude.v1.Team";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "talks", kind: "message", T: Talk, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Team {
+    return new Team().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Team {
+    return new Team().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Team {
+    return new Team().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Team | PlainMessage<Team> | undefined, b: Team | PlainMessage<Team> | undefined): boolean {
+    return proto3.util.equals(Team, a, b);
+  }
+}
+
+/**
  * @generated from message etude.v1.HomeResponse
  */
 export class HomeResponse extends Message<HomeResponse> {
@@ -244,9 +287,9 @@ export class HomeResponse extends Message<HomeResponse> {
   user?: User;
 
   /**
-   * @generated from field: repeated etude.v1.Talk talk = 2;
+   * @generated from field: repeated etude.v1.Team team = 2;
    */
-  talk: Talk[] = [];
+  team: Team[] = [];
 
   constructor(data?: PartialMessage<HomeResponse>) {
     super();
@@ -257,7 +300,7 @@ export class HomeResponse extends Message<HomeResponse> {
   static readonly typeName = "etude.v1.HomeResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "user", kind: "message", T: User },
-    { no: 2, name: "talk", kind: "message", T: Talk, repeated: true },
+    { no: 2, name: "team", kind: "message", T: Team, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): HomeResponse {

@@ -42,26 +42,40 @@ export default (router: ConnectRouter) => {
         throw new ConnectError(JSON.stringify(err), Code.Internal);
       }
     },
-    // async createUser(req, context) {
-    //   const token = context.requestHeader.get("authorization")?.replace("Bearer ", "") ?? "";
-    //   const sessionUser = await auth.verifySessionCookie(token);
-    //   let recordUser;
+    async home(_, context) {
+      try {
+        const token = context.requestHeader.get("authorization")?.replace("Bearer ", "") ?? "";
+        const session = await auth.verifySessionCookie(token);
+        if (!session.email) throw new Error("Email does not exist.");
 
-    //   recordUser = await prisma.user.findUnique({
-    //     where: {
-    //       googleUserId: sessionUser.uid,
-    //     },
-    //   });
+        const user = await prisma.user.findUniqueOrThrow({
+          where: { googleUserId: session.uid },
+          include: {
+            teamMembers: {
+              include: { team: { include: { talks: true } } },
+            },
+          },
+        });
 
-    //   if (!recordUser) {
-    //     recordUser = await prisma.user.create({
-    //       data: {
-    //         googleUserId: sessionUser.uid,
-    //         name: sessionUser.name ?? "NoName",
-    //         email: sessionUser.email ?? "NoEmail",
-    //       },
-    //     });
-    //   }
-    // },
+        const formatTeams = user.teamMembers.map((member) => ({
+          name: member.team.name,
+          talks: member.team.talks.map((talk) => ({
+            title: talk.title,
+            startedAt: talk.startedAt,
+          })),
+        }));
+
+        return {
+          user: {
+            name: user.name,
+            email: user.email,
+          },
+          teams: formatTeams,
+        };
+      } catch (err) {
+        console.log("createInitialTeam:", JSON.stringify(err));
+        throw new ConnectError(JSON.stringify(err), Code.Internal);
+      }
+    },
   });
 };
