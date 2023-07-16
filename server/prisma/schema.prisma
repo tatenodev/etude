@@ -15,8 +15,8 @@ model User {
   googleUserId String       @unique
   name         String
   email        String       @unique
-  teamMembers  TeamMember[]
-  talkMembers  TalkMember[]
+  teams        TeamMember[]
+  talks        TalkMember[]
   createdAt    DateTime     @default(now())
   updatedAt    DateTime     @updatedAt
 }
@@ -25,6 +25,7 @@ model Team {
   id        Int          @id @default(autoincrement())
   name      String
   members   TeamMember[]
+  talks     Talk[]
   createdAt DateTime     @default(now())
   updatedAt DateTime     @updatedAt
 }
@@ -43,10 +44,12 @@ model TeamMember {
 }
 
 model Talk {
-  id          Int          @id @default(autoincrement())
-  title       String
-  talkMembers TalkMember[]
-  startedAt   DateTime
+  id        Int          @id @default(autoincrement())
+  title     String
+  talks     TalkMember[]
+  team      Team         @relation(fields: [teamId], references: [id])
+  teamId    Int
+  startedAt DateTime
 }
 
 model TalkMember {
