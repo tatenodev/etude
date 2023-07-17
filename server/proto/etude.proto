@@ -6,7 +6,6 @@ service EtudeService {
   rpc Hello(HelloRequest) returns (HelloResponse) {}
   rpc CreateInitialTeam(CreateTeamRequest) returns (Empty) {}
   rpc Home(Empty) returns (HomeResponse) {}
-  // rpc GetTalk() returns () {}
 }
 
 message Empty {}
@@ -33,15 +32,12 @@ message Talk {
 }
 
 message Team {
-  string name = 1;
-  repeated Talk talks = 2;
+  uint64 id = 1;
+  string name = 2;
+  repeated Talk talks = 3;
 }
 
 message HomeResponse {
   User user = 1;
   repeated Team teams = 2;
 }
-
-// message GetTalkRequest {
-//   optional string message = 1;
-// }

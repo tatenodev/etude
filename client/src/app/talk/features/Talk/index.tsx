@@ -1,18 +1,23 @@
+"use client";
+
 import { Card } from "./components/card";
-import { cardWrapper } from "./index.css";
+import { styled } from "./index.css";
 import { GoCommentDiscussion } from "react-icons/go";
 
 const mockData = [
-  { title: "Denoに追加されたKVについて話そう", date: "2023年8月3日（木）7:00pm" },
-  { title: "Denoに追加されたKVについて話そう2", date: "2023年8月3日（木）8:00pm" },
-  { title: "Denoに追加されたKVについて話そう3", date: "2023年8月3日（木）9:00pm" },
+  { title: "title1", date: "2023年8月3日（木）7:00pm" },
+  { title: "title2", date: "2023年8月3日（木）8:00pm" },
+  { title: "title3", date: "2023年8月3日（木）9:00pm" },
 ];
 
 export function Talk() {
   return (
     <div>
-      <h2 style={{ fontSize: 22 }}>予定されているトーク</h2>
-      <div className={cardWrapper}>
+      <div className={styled.titleWrapper}>
+        <h2 style={{ fontSize: 22 }}>予定されているトーク</h2>
+        <button>トーク追加</button>
+      </div>
+      <div className={styled.cardWrapper}>
         {mockData.map((item, index) => (
           <Card key={index.toString()} title={item.title} date={item.date} />
         ))}

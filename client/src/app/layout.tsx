@@ -9,9 +9,8 @@ import { UserProvider } from "@/providers/contextProvider/UserProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "TechEtude | エンジニアコミュニティのトークを活性化しよう",
-  description:
-    "TechEtudeは、エンジニアコミュニティのトークを活性化するためのプラットフォームです。最新の技術トピックや開発のベストプラクティスについての対話を通じて、エンジニア同士の交流と学びを促進します。参加者はトークを通じてコミュニケーションスキルを向上させ、より深い技術的な知識を獲得することができます。一緒に成長し、共に学ぶエンジニアコミュニティを育てませんか？",
+  title: "Etude",
+  description: "Etude description",
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {

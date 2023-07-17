@@ -1,14 +1,25 @@
+"use client";
+
+import { Team } from "@/connect/etude_pb";
 import { Menu } from "./Menu/menu";
 
-type Props = {
-  showMenu?: boolean;
+type HeaderProps = {
+  teams: Team[];
 };
 
-export function Header({ showMenu = true }: Props) {
+export async function Header({ teams }: HeaderProps) {
+  console.log("teams", teams);
   return (
     <>
-      <h1>TechEtude</h1>
-      {showMenu ? <Menu /> : <></>}
+      <h1>Etude</h1>
+      <select name="" id="">
+        {teams.map((team) => (
+          <option key={team.id.toString()} value={team.id.toString()}>
+            {team.name}
+          </option>
+        ))}
+      </select>
+      <Menu />
     </>
   );
 }

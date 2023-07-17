@@ -24,6 +24,7 @@ export const home = async (_: Empty, context: HandlerContext) => {
     }
 
     const formatTeams = user.teamMembers.map((member) => ({
+      id: BigInt(member.teamId),
       name: member.team.name,
       talks: member.team.talks.map((talk) => ({
         title: talk.title,

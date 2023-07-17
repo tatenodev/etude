@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
 
 /**
  * @generated from message etude.v1.Empty
@@ -239,12 +239,17 @@ export class Talk extends Message<Talk> {
  */
 export class Team extends Message<Team> {
   /**
-   * @generated from field: string name = 1;
+   * @generated from field: uint64 id = 1;
+   */
+  id = protoInt64.zero;
+
+  /**
+   * @generated from field: string name = 2;
    */
   name = "";
 
   /**
-   * @generated from field: repeated etude.v1.Talk talks = 2;
+   * @generated from field: repeated etude.v1.Talk talks = 3;
    */
   talks: Talk[] = [];
 
@@ -256,8 +261,9 @@ export class Team extends Message<Team> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "etude.v1.Team";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "talks", kind: "message", T: Talk, repeated: true },
+    { no: 1, name: "id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "talks", kind: "message", T: Talk, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Team {
